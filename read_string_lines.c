@@ -16,6 +16,6 @@ int main(void) {
 		printf( ">> %s\n", line);
 		line = strtok(NULL, s);
 	}
-	
+	free(ex);
     return 0;
 }
