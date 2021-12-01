@@ -7,7 +7,7 @@ int main(void) {
 	strcpy(ex, "   S A  LAM   \n s d ! $ \n \0");
 	char *line;
 	
-	/* define \n as delimiter */
+	/* define "\n" as delimiter */
 	const char * s = "\n";
 	/* get the first line */ 
 	line = strtok(ex, s);
