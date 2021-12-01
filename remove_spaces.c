@@ -18,5 +18,6 @@ int main(void) {
 	strcpy(ex, "   S A  LAM   \n s d ! $ \n \0");
 	remove_spaces(ex);
 	printf("{%s}\n", ex);
+	free(ex);
     return 0;
 }
