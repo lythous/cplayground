@@ -13,7 +13,6 @@ int main(void) {
 	line = strtok(ex, s);
 	/* walk through other tokens */
 	while( line != NULL ) {
-		remove_spaces(line);
 		printf( ">> %s\n", line);
 		line = strtok(NULL, s);
 	}
