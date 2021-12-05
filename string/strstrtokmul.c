@@ -21,7 +21,7 @@ char *strstrtok(char **str, const char *delimiter){
  */
 char *strstrtokmul(char **str, ...) {
 	va_list delimiters_list;
-	va_start(delimiters_list, **str);
+	va_start(delimiters_list, str); /* ?? str or **str ?? */
 	
 	char *delimiter;
 	char *srchres;
