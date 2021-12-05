@@ -16,7 +16,9 @@ char *strstrtok(char **str, const char *delimiter){
     else return *str;
 }
 
-
+/*
+ * strstrtokmul takes an string and tokenize it by arbitrary number of delimiters (string type)
+ */
 char *strstrtokmul(char **str, ...) {
 	va_list delimiters_list;
 	va_start(delimiters_list, **str);
