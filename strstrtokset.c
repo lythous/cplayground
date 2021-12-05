@@ -49,3 +49,9 @@ int main(void) {
 	free(str);
     return 0;
 }
+
+/* OUTPUT:
+ * func_name: tan
+ * func_name: tan
+ * func_name: tan
+ */
