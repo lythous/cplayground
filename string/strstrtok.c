@@ -3,6 +3,10 @@
 #include <stdlib.h>
 
 
+/* strstrtok gets a string pointer and and a string delimiter and returns delimited string as output */
+/* and change input string pointer to point after delimited text. */
+/* Example:     *str = "salambarali; delimiter="bar"; */
+/*              ==> Output="salam"; *str = "ali";*/
 char *strstrtok(char **str, const char *delimiter){
     char *pch1 = strstr(*str, delimiter);
     if (pch1!=NULL) {
@@ -12,7 +16,7 @@ char *strstrtok(char **str, const char *delimiter){
         *str = pch1 + strlen(delimiter);
         return pch2;
     }
-    else return *str;
+    else return *str;   /* If delimiter not found in input string => output is the same as input. */
 }
 
 
