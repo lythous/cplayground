@@ -6,7 +6,7 @@
 /* strstrtok gets a string pointer and and a string delimiter and returns delimited string as output */
 /* and change input string pointer to point after delimited text. */
 /* Example:     *str = "salambarali; delimiter="bar"; */
-/*              ==> Output="salam"; *str = "ali";*/
+/*              ==> Output="salam"; *str = "ali"; */
 char *strstrtok(char **pstr, const char *delimiter){
     char *pch1 = strstr(*pstr, delimiter);
     if (pch1!=NULL) {
