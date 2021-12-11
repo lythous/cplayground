@@ -7,21 +7,20 @@
 /* and change input string pointer to point after delimited text. */
 /* Example:     *str = "salambarali; delimiter="bar"; */
 /*              ==> Output="salam"; *str = "ali";*/
-char *strstrtok(char **str, const char *delimiter){
-    char *pch1 = strstr(*str, delimiter);
+char *strstrtok(char **pstr, const char *delimiter){
+    char *pch1 = strstr(*pstr, delimiter);
     if (pch1!=NULL) {
         char *pch2;
-        pch2 = *str;
+        pch2 = *pstr;
         *pch1 = '\0';
-        *str = pch1 + strlen(delimiter);
+        *pstr = pch1 + strlen(delimiter);
         return pch2;
     }
-    else return *str;   /* If delimiter not found in input string => output is the same as input. */
+    else return *pstr;   /* If delimiter not found in input string => output is the same as input. */
 }
 
 
-int main()
-{
+void example() {
     char *str = malloc(sizeof(char)*64);
     strcpy(str, "a{break}b{break}c");
     const char *delimiter = "{break}";
@@ -31,11 +30,17 @@ int main()
         find = strstrtok(&str, delimiter);
         printf("%s\n", find);
     }
-    return 0;
 }
-
 /* OUTPUT:
  * a
  * b
  * c
  */
+
+
+
+int main()
+{
+    example();
+    return 0;
+}
