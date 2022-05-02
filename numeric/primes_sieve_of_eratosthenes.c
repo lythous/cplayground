@@ -4,7 +4,6 @@
 
 
 unsigned long *findPrimesLessThan(unsigned long, unsigned long*);
-int isDivisbleBy(unsigned long, unsigned long*, unsigned long);
 void printList(unsigned long *, unsigned long);
 unsigned long pickFromSieve(unsigned long *, char*, unsigned long);
 unsigned long countSieve(char*, unsigned long);
