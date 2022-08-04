@@ -8,39 +8,58 @@ unsigned long pickFromSieve(unsigned long *, char*, unsigned long);
 unsigned long countSieve(char*, unsigned long);
 void printList(int *, int);
 int sumOfPorperDivisors(int);
-int* findAbundantNumbersLessThan(int, int *);
+int findAbundantNumbersLessThan(int n, int **abundantNumbersAddress);
+void sumOfAbundantNumbersPairs(char* sumList, int* abundantNumbers, int n, int count);
+void printZeroCharList(char *list, int count) ;
 
 unsigned long *primes;
 int *abundantNumbers;
 
-int main(void) {
-    printf("xx");
+int main(void) {    
+    int count;
+	int n = 28123;
+	int *abundantNumbers;
+	char* sumList;
+	sumList = calloc(2*n, sizeof(char));
+	
+	primes = findPrimesLessThan(n);
+    count = findAbundantNumbersLessThan(n, &abundantNumbers);
+	
+	sumOfAbundantNumbersPairs(sumList, abundantNumbers, n, count);
     
-    int countANs;
-    primes = findPrimesLessThan(10000);
-    abundantNumbers = findAbundantNumbersLessThan(1000, &countANs);
-    //printList(abundantNumbers, countANs);
-    //free(primes);
-    //free(abundantNumbers);
+	//printf("There are %d abundant numbers less than %d:\n",count, n);
+	//printf("List of abundant numbers less than %d:\n", n);
+	//printList(abundantNumbers, count);
+	//printf("\nList of numbers which are not sum of two abundant numbers:\n", n);	
+	printZeroCharList(sumList, n);
+    
+	free(primes);
+    free(abundantNumbers);	
     return 0;
 }
 
+void sumOfAbundantNumbersPairs(char* sumList, int* abundantNumbers, int n, int count) {
 
-int* findAbundantNumbersLessThan(int n, int *count_) {
-    int *abundantNumbers_ = malloc(sizeof(int));
+	for(int i=0; i<count; i++) {
+		for (int j=0; j<count; j++) {
+			sumList[abundantNumbers[i]+abundantNumbers[j]] = 1;
+		}
+	}
+}
+
+
+int findAbundantNumbersLessThan(int n, int **abundantNumbersAddress) {
+    
     int count = 0;
+	*abundantNumbersAddress = calloc(0, sizeof(int));
     for (int i=1; i<n; i++) {
-        printf("%d-%d  ", count, i);
         if (sumOfPorperDivisors(i)>i){
-            printf("%d-%d  ", count, i);
-
-            count++;
-            //abundantNumbers_ = (int*) realloc(abundantNumbers_, count*sizeof(int));
-            abundantNumbers_[count] = i;
+			count++;
+			*abundantNumbersAddress = realloc(*abundantNumbersAddress, count*sizeof(int));
+            (*abundantNumbersAddress)[count-1] = i;
         }
     }
-    //*count_ = count;
-    return abundantNumbers_;
+    return count;
 }
 
 
@@ -106,7 +125,6 @@ unsigned long pickFromSieve(unsigned long *primes, char* sieve, unsigned long to
             count++;
         }
     }
-    
     return count;
 }
 
@@ -125,11 +143,21 @@ unsigned long countSieve(char* sieve, unsigned long totalN) {
 
 
 void printList(int *list, int count) {
-    int i;
-    
-    for (i = 0; i < count - 1; i++) {
+	int i;
+    for (i = 0; i < count-1; i++) {
         printf("%lu, ", list[i]);
     }
-    
-  printf("%lu\n", list[i]);
+	printf("%lu", list[i]);
+}
+
+void printZeroCharList(char *list, int count) {
+	int i;
+	long sum = 0;
+    for (i = 0; i < count; i++) {
+		if (list[i] == 0) {
+			//printf("%d, ", i);
+			sum += i;
+		}
+    }
+	printf("\n Sum = %lu", sum);
 }
